@@ -9,6 +9,7 @@ public class LengthTest {
     @Test
     public void should_add_length_with_same_unit() throws Exception {
         MyLength length1 = new MyLength(1, "m");
+        MyLength myLength = new MyLength(1, UNIT.M);
         MyLength length2 = new MyLength(1, "m");
 
         MyLength result = length1.add(length2);

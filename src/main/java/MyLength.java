@@ -2,7 +2,8 @@ import java.util.HashMap;
 
 public class MyLength {
 
-    private final String unit;
+    private String unit;
+    private UNIT unit2;
     private double value;
     HashMap<String, Double> ratioMap = new HashMap<String, Double>() {{
         put("m", 1.0);
@@ -13,6 +14,11 @@ public class MyLength {
     public MyLength(double value, String unit) {
         this.value = value;
         this.unit = unit;
+    }
+
+    public MyLength(double value, UNIT unit) {
+        this.value = value;
+        this.unit2 = unit;
     }
 
     public MyLength add(MyLength addedLength) {
