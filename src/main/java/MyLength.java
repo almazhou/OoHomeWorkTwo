@@ -1,48 +1,35 @@
-import java.util.HashMap;
-
 public class MyLength {
 
-    private String unit;
-    private UNIT unit2;
+    private UNIT unit;
     private double value;
-    HashMap<String, Double> ratioMap = new HashMap<String, Double>() {{
-        put("m", 1.0);
-        put("cm", 0.01);
-        put("mm", 0.001);
-    }};
 
-    public MyLength(double value, String unit) {
+    public MyLength(double value, UNIT unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public MyLength(double value, UNIT unit) {
-        this.value = value;
-        this.unit2 = unit;
-    }
-
     public MyLength add(MyLength addedLength) {
-        return new MyLength(convertUnitToM(this) + convertUnitToM(addedLength), "m");
+        return new MyLength(convertUnitToM(this) + convertUnitToM(addedLength), UNIT.valueOf("M"));
     }
 
     private double convertUnitToM(MyLength length) {
-        return length.getValue() * ratioMap.get(length.getUnit());
+        return length.getValue() * length.getUnit().getRatio();
     }
 
     public double getValue() {
         return value;
     }
 
-    public String getUnit() {
+    public UNIT getUnit() {
         return unit;
     }
 
-    public int compareTo(MyLength otherLength) {
-        return (int) (convertUnitToM(this) - convertUnitToM(otherLength));
+    public double compareTo(MyLength otherLength) {
+        return (convertUnitToM(this) - convertUnitToM(otherLength));
     }
 
     public MyLength subtract(MyLength otherLength) {
-        return new MyLength(convertUnitToM(this) - convertUnitToM(otherLength),"m");
+        return new MyLength(convertUnitToM(this) - convertUnitToM(otherLength), UNIT.valueOf("M"));
     }
 
     public double multiply(MyLength otherLength) {

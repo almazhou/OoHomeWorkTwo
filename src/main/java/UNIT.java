@@ -6,4 +6,7 @@ public enum UNIT {
         this.ratio = ratio;
     }
 
+    public double getRatio() {
+        return ratio;
+    }
 }
